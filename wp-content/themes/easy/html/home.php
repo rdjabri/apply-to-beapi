@@ -169,6 +169,31 @@
 			</div>
 		</div>
 
+		<!-- 6 LAST ARTICLES-->
+		<?php
+			// 1. on défini ce que l'on veut
+			$args = array(
+			    'post_type' => 'post',
+			    'posts_per_page' => 6,
+			    'order' => 'DESC',
+			);
+
+			// 2. on exécute la query
+			$my_query = new WP_Query($args);
+
+			// 3. on lance la boucle !
+			if($my_query->have_posts()) : while ($my_query->have_posts() ) : $my_query->the_post();
+
+				get_template_part('partials/homepage_articles');
+
+			endwhile;
+			endif;
+
+			// 4. On réinitialise à la requête principale (important)
+			wp_reset_postdata();
+		?>
+
+
 		<!-- gallery -->
 		<div class="gallery" id="gallery">
 			<div class="container">
