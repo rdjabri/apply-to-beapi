@@ -169,31 +169,6 @@
 			</div>
 		</div>
 
-		<!-- 6 LAST ARTICLES-->
-		<?php
-			// 1. on défini ce que l'on veut
-			$args = array(
-			    'post_type' => 'post',
-			    'posts_per_page' => 6,
-			    'order' => 'DESC',
-			);
-
-			// 2. on exécute la query
-			$my_query = new WP_Query($args);
-
-			// 3. on lance la boucle !
-			if($my_query->have_posts()) : while ($my_query->have_posts() ) : $my_query->the_post();
-
-				get_template_part('partials/homepage_articles');
-
-			endwhile;
-			endif;
-
-			// 4. On réinitialise à la requête principale (important)
-			wp_reset_postdata();
-		?>
-
-
 		<!-- gallery -->
 		<div class="gallery" id="gallery">
 			<div class="container">
@@ -206,59 +181,41 @@
 					</div>
 					
 					<div class="gallery-wrapper	col-sm-12 col-xs-12">
-						<!-- portfolio-row-1 -->
-						<div class="portfolio-block">
-							<ul class="work-list">
-								<li><a href="project.html">
-									<img src="images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-								<li><a href="project.html">
-									<img src="images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-								<li><a href="project.html">
-									<img src="images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-							</ul>
-						</div>
 
-						<!-- portfolio-row-2 -->
-						<div class="portfolio-block ">
-							<ul class="work-list">
-								<li><a href="project.html">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-								<li><a href="project.html">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-								<li><a href="project.html">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/380x380.jpg" alt="">
-									<div class="gallery-content">
-										<div class="project-title">Project Title</div>
-										<div class="project-client">Client</div>
-									</div>
-								</a></li>
-							</ul>	
-						</div>
+						<?php
+							// 1. on défini ce que l'on veut
+							$args = array(
+							    'post_type' => 'post',
+							    'posts_per_page' => 6,
+							    'order' => 'DESC',
+							);
+
+							// 2. on exécute la query
+							$my_query = new WP_Query($args);
+
+							
+							// 3. on lance la boucle !
+							$myCpt = 1;
+
+							if($my_query->have_posts()) : 
+								while ($my_query->have_posts() ) : $my_query->the_post(); ?>
+
+									<?php get_template_part("partials/homepage_articles");
+
+									if($myCpt % 3 == 0): 
+										
+
+									endif;
+								$myCpt++;
+
+								endwhile;
+
+							endif;
+
+							// 4. On réinitialise à la requête principale (important)
+							wp_reset_postdata();
+						?>
+
 					</div>
 
 					<div class="col-sm-12">

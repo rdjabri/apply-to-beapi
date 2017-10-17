@@ -1,6 +1,9 @@
-<div class="home_article">
-	<h2><?php the_title(); ?></h2>
-	<p>
-		<?php the_content(); ?>
-	</p>
-</div>
+<li>
+	<a href="<?php echo get_permalink(); ?>">
+		<?php the_post_thumbnail(); ?>
+		<div class="gallery-content">
+			<div class="project-title"><?php the_title(); ?></div>
+			<div class="project-client"><?php the_author(); ?></div>
+		</div>
+	</a>
+</li>
